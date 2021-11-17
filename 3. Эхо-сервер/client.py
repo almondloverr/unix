@@ -2,7 +2,7 @@ import socket # модуль для работы с сокетами
 from threading import Thread # модуль для работы с потоками
 
 
-def input_check(message = ''):
+def input_check(message=''):
     a = input(message)
     if a == 'exit' or a == '/stop':
         exit()
@@ -30,11 +30,11 @@ def send_text(conn, message):
 
 
 try:
-    host = input_check('Введите имя хоста: ')
+    host = input_check('Введите имя хоста (нажмите enter, если хотите получить хост по умолчанию): ')
     if not host:
         host = '127.0.1.1'
         print(f'Выставили адрес хоста по умолчанию {host}')
-    port = input_check(f"Введите порт для {host}: ')
+    port = input_check(f'Введите порт для {host} (нажмите enter, если хотите получить порт по умолчанию): ')
     if not port:
         port = 9000
         print(f'Выставили порт по умолчанию: {port}')
@@ -42,6 +42,7 @@ try:
         port = int(port)
 except ValueError:
     print('Неверно указан порт! Попробуйте еще раз!')
+
 try:
     sock = socket.socket()
     sock.connect((host, port))
